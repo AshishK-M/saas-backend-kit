@@ -24,6 +24,11 @@ export const envSchema = z.object({
   RATE_LIMIT_WINDOW: z.string().default('1m'),
   RATE_LIMIT_LIMIT: z.string().default('100'),
   LOG_LEVEL: z.enum(['fatal', 'error', 'warn', 'info', 'debug', 'trace']).default('info'),
+  AWS_REGION: z.string().default('us-east-1'),
+  AWS_ACCESS_KEY_ID: z.string().optional(),
+  AWS_SECRET_ACCESS_KEY: z.string().optional(),
+  AWS_S3_BUCKET: z.string().optional(),
+  AWS_ENDPOINT: z.string().optional(),
 });
 
 export type EnvConfig = z.infer<typeof envSchema>;

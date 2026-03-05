@@ -45,6 +45,11 @@
       "types": "./dist/response/index.d.ts",
       "import": "./dist/response/index.mjs",
       "require": "./dist/response/index.js"
+    },
+    "./upload": {
+      "types": "./dist/upload/index.d.ts",
+      "import": "./dist/upload/index.mjs",
+      "require": "./dist/upload/index.js"
     }
   },
   "scripts": {
@@ -66,11 +71,16 @@
     "redis",
     "queue",
     "notifications",
-    "rate-limit"
+    "rate-limit",
+    "s3",
+    "upload",
+    "aws"
   ],
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.490.0",
+    "@aws-sdk/s3-request-presigner": "^3.490.0",
     "bcryptjs": "^2.4.3",
     "bullmq": "^5.1.0",
     "express": "^4.18.2",

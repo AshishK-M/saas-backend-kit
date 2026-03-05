@@ -215,6 +215,64 @@ export declare class ResponseHelper {
 
 export declare const response: typeof ResponseHelper;
 `,
+  'upload/index.d.ts': `export interface S3Config {
+  region?: string;
+  accessKeyId?: string;
+  secretAccessKey?: string;
+  bucket: string;
+  endpoint?: string;
+  forcePathStyle?: boolean;
+}
+
+export interface UploadOptions {
+  key?: string;
+  contentType?: string;
+  expiresIn?: number;
+  metadata?: Record<string, string>;
+}
+
+export interface UploadResult {
+  key: string;
+  url: string;
+  bucket: string;
+  contentType?: string;
+  size?: number;
+}
+
+export interface SignedUrlOptions {
+  expiresIn?: number;
+}
+
+export interface FileObject {
+  key: string;
+  lastModified?: Date;
+  size?: number;
+  contentType?: string;
+}
+
+export declare const upload: {
+  initialize: (config: S3Config) => void;
+  file: (file: Buffer | Uint8Array | string, options?: UploadOptions) => Promise<UploadResult>;
+  image: (file: Buffer | Uint8Array | string, filename: string, options?: UploadOptions) => Promise<UploadResult>;
+  video: (file: Buffer | Uint8Array | string, filename: string, options?: UploadOptions) => Promise<UploadResult>;
+  delete: (key: string) => Promise<void>;
+  getSignedUrl: (key: string, options?: SignedUrlOptions) => Promise<string>;
+  getPublicUrl: (key: string) => Promise<string>;
+  listFiles: (prefix?: string, maxKeys?: number) => Promise<FileObject[]>;
+};
+
+export declare class S3Service {
+  initialize(config: S3Config): void;
+  isInitialized(): boolean;
+  upload(file: Buffer | Uint8Array | string, options?: UploadOptions): Promise<UploadResult>;
+  uploadImage(file: Buffer | Uint8Array | string, filename: string, options?: UploadOptions): Promise<UploadResult>;
+  uploadVideo(file: Buffer | Uint8Array | string, filename: string, options?: UploadOptions): Promise<UploadResult>;
+  delete(key: string): Promise<void>;
+  getSignedUrl(key: string, options?: SignedUrlOptions): Promise<string>;
+  getPublicUrl(key: string): Promise<string>;
+  listFiles(prefix?: string, maxKeys?: number): Promise<FileObject[]>;
+}
+`,
   'index.d.ts': `export * from './auth';
 export * from './queue';
 export * from './notifications';
@@ -222,6 +280,7 @@ export * from './logger';
 export * from './rate-limit';
 export * from './config';
 export * from './response';
+export * from './upload';
 
 export interface AppOptions {
   framework?: 'express' | 'fastify';
