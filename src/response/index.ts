@@ -13,7 +13,8 @@ export interface ApiResponse<T = unknown> {
   };
 }
 
-export interface PaginatedResponse<T> extends ApiResponse<T> {
+export interface PaginatedResponse<T> extends Omit<ApiResponse<T[]>, 'data'> {
+  data: T[];
   meta: {
     page: number;
     limit: number;
@@ -141,57 +142,65 @@ declare global {
   }
 }
 
-Response.prototype.success = function <T>(data?: T, message?: string, statusCode: number = 200) {
-  return ResponseHelper.success(this, data, message, statusCode);
-};
+try {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const proto = require('express').response;
+  if (proto) {
+    proto.success = function <T>(this: Response, data?: T, message?: string, statusCode: number = 200) {
+      return ResponseHelper.success(this, data, message, statusCode);
+    };
 
-Response.prototype.created = function <T>(data?: T, message?: string) {
-  return ResponseHelper.created(this, data, message);
-};
+    proto.created = function <T>(this: Response, data?: T, message?: string) {
+      return ResponseHelper.created(this, data, message);
+    };
 
-Response.prototype.updated = function <T>(data?: T, message?: string) {
-  return ResponseHelper.updated(this, data, message);
-};
+    proto.updated = function <T>(this: Response, data?: T, message?: string) {
+      return ResponseHelper.updated(this, data, message);
+    };
 
-Response.prototype.deleted = function (message?: string) {
-  return ResponseHelper.deleted(this, message);
-};
+    proto.deleted = function (this: Response, message?: string) {
+      return ResponseHelper.deleted(this, message);
+    };
 
-Response.prototype.error = function (error: string, statusCode: number = 400, code?: string, details?: Record<string, unknown>) {
-  return ResponseHelper.error(this, error, statusCode, code, details);
-};
+    proto.error = function (this: Response, error: string, statusCode: number = 400, code?: string, details?: Record<string, unknown>) {
+      return ResponseHelper.error(this, error, statusCode, code, details);
+    };
 
-Response.prototype.badRequest = function (error?: string, code?: string) {
-  return ResponseHelper.badRequest(this, error, code);
-};
+    proto.badRequest = function (this: Response, error?: string, code?: string) {
+      return ResponseHelper.badRequest(this, error, code);
+    };
 
-Response.prototype.unauthorized = function (error?: string, code?: string) {
-  return ResponseHelper.unauthorized(this, error, code);
-};
+    proto.unauthorized = function (this: Response, error?: string, code?: string) {
+      return ResponseHelper.unauthorized(this, error, code);
+    };
 
-Response.prototype.forbidden = function (error?: string, code?: string) {
-  return ResponseHelper.forbidden(this, error, code);
-};
+    proto.forbidden = function (this: Response, error?: string, code?: string) {
+      return ResponseHelper.forbidden(this, error, code);
+    };
 
-Response.prototype.notFound = function (error?: string, code?: string) {
-  return ResponseHelper.notFound(this, error, code);
-};
+    proto.notFound = function (this: Response, error?: string, code?: string) {
+      return ResponseHelper.notFound(this, error, code);
+    };
 
-Response.prototype.conflict = function (error?: string, code?: string) {
-  return ResponseHelper.conflict(this, error, code);
-};
+    proto.conflict = function (this: Response, error?: string, code?: string) {
+      return ResponseHelper.conflict(this, error, code);
+    };
 
-Response.prototype.validationError = function (error: string, details?: Record<string, unknown>) {
-  return ResponseHelper.validationError(this, error, details);
-};
+    proto.validationError = function (this: Response, error: string, details?: Record<string, unknown>) {
+      return ResponseHelper.validationError(this, error, details);
+    };
 
-Response.prototype.internalError = function (error?: string) {
-  return ResponseHelper.internalError(this, error);
-};
+    proto.internalError = function (this: Response, error?: string) {
+      return ResponseHelper.internalError(this, error);
+    };
 
-Response.prototype.paginated = function <T>(data: T[], page: number, limit: number, total: number) {
-  return ResponseHelper.paginated(this, data, page, limit, total);
-};
+    proto.paginated = function <T>(this: Response, data: T[], page: number, limit: number, total: number) {
+      return ResponseHelper.paginated(this, data, page, limit, total);
+    };
+  }
+} catch {
+  // express not available at runtime
+}
 
 export const response = ResponseHelper;
 export default ResponseHelper;

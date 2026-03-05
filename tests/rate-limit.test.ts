@@ -1,6 +1,6 @@
 describe('Rate Limit Module', () => {
   test('should create rate limiter middleware', () => {
-    const { rateLimit } = require('../dist/rate-limit');
+    const { rateLimit } = require('../src/rate-limit');
     
     const middleware = rateLimit({ window: '1m', limit: 100 });
     expect(middleware).toBeDefined();
@@ -8,7 +8,7 @@ describe('Rate Limit Module', () => {
   });
 
   test('should create rate limiter with defaults', () => {
-    const { rateLimit } = require('../dist/rate-limit');
+    const { rateLimit } = require('../src/rate-limit');
     
     const middleware = rateLimit();
     expect(middleware).toBeDefined();
@@ -16,7 +16,7 @@ describe('Rate Limit Module', () => {
   });
 
   test('should create custom rate limiter', () => {
-    const { createRateLimiter } = require('../dist/rate-limit');
+    const { createRateLimiter } = require('../src/rate-limit');
     
     const limiter = createRateLimiter({ window: '1m', limit: 10 });
     expect(limiter).toBeDefined();
@@ -25,7 +25,7 @@ describe('Rate Limit Module', () => {
   });
 
   test('should use custom key generator', () => {
-    const { rateLimit } = require('../dist/rate-limit');
+    const { rateLimit } = require('../src/rate-limit');
     
     const middleware = rateLimit({
       window: '1m',
@@ -37,7 +37,7 @@ describe('Rate Limit Module', () => {
   });
 
   test('should use custom skip function', () => {
-    const { rateLimit } = require('../dist/rate-limit');
+    const { rateLimit } = require('../src/rate-limit');
     
     const middleware = rateLimit({
       window: '1m',

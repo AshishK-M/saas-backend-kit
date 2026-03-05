@@ -14,8 +14,10 @@ describe('Auth Module', () => {
     },
     
     async create(data: any) {
+      const bcrypt = require('bcryptjs');
       const id = Math.random().toString(36).substr(2, 9);
-      const user = { id, email: data.email, role: data.role || 'user', ...data };
+      const hashedPassword = await bcrypt.hash(data.password, 10);
+      const user = { id, email: data.email, role: data.role || 'user', ...data, password: hashedPassword };
       this.users.set(id, user);
       return user;
     },

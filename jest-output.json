@@ -1,0 +1,72 @@
+FAIL tests/utils.test.ts (7.974 s)
+  Utils Module
+    × should generate random ID (464 ms)
+    × should generate ID with custom length (330 ms)
+    × should hash string (18 ms)
+    × should generate token (18 ms)
+    × should generate API key with prefix (61 ms)
+    × should sleep (25 ms)
+    × should retry on failure (14 ms)
+    × should parse query int (14 ms)
+    × should parse query bool (17 ms)
+
+  ● Utils Module › should generate random ID
+
+
+
+
+
+  ● Utils Module › should generate ID with custom length
+
+
+
+
+
+  ● Utils Module › should hash string
+
+
+
+
+
+  ● Utils Module › should generate token
+
+
+
+
+
+  ● Utils Module › should generate API key with prefix
+
+
+
+
+
+  ● Utils Module › should sleep
+
+
+
+
+
+  ● Utils Module › should retry on failure
+
+
+
+
+
+  ● Utils Module › should parse query int
+
+
+
+
+
+  ● Utils Module › should parse query bool
+
+
+
+
+
+Test Suites: 1 failed, 1 total
+Tests:       9 failed, 9 total
+Snapshots:   0 total
+Time:        8.281 s
+Ran all test suites matching /tests\\utils.test.ts/i.
+{"numFailedTestSuites":1,"numFailedTests":9,"numPassedTestSuites":0,"numPassedTests":0,"numPendingTestSuites":0,"numPendingTests":0,"numRuntimeErrorTestSuites":0,"numTodoTests":0,"numTotalTestSuites":1,"numTotalTests":9,"openHandles":[],"snapshot":{"added":0,"didUpdate":false,"failure":false,"filesAdded":0,"filesRemoved":0,"filesRemovedList":[],"filesUnmatched":0,"filesUpdated":0,"matched":0,"total":0,"unchecked":0,"uncheckedKeysByFile":[],"unmatched":0,"updated":0},"startTime":1772702813609,"success":false,"testResults":[{"assertionResults":[{"ancestorTitles":["Utils Module"],"duration":464,"failureDetails":[{"name":"TSError","diagnosticText":"\u001b[96msrc/utils/index.ts\u001b[0m:\u001b[93m151\u001b[0m:\u001b[93m7\u001b[0m - \u001b[91merror\u001b[0m\u001b[90m TS2322: \u001b[0mType 'unknown' is not assignable to type 'T[keyof T] | undefined'.\n\n\u001b[7m151\u001b[0m       sanitized[key as keyof T] = obj[key];\n\u001b[7m   \u001b[0m \u001b[91m      ~~~~~~~~~~~~~~~~~~~~~~~~~\u001b[0m\n","diagnosticCodes":[2322]}],"failureMessages":[""],"fullName":"Utils Module should generate random ID","invocations":1,"location":null,"numPassingAsserts":0,"retryReasons":[],"status":"failed","title":"should generate random ID"},{"ancestorTitles":["Utils Module"],"duration":330,"failureDetails":[{"name":"TSError","diagnosticText":"\u001b[96msrc/utils/index.ts\u001b[0m:\u001b[93m151\u001b[0m:\u001b[93m7\u001b[0m - \u001b[91merror\u001b[0m\u001b[90m TS2322: \u001b[0mType 'unknown' is not assignable to type 'T[keyof T] | undefined'.\n\n\u001b[7m151\u001b[0m       sanitized[key as keyof T] = obj[key];\n\u001b[7m   \u001b[0m \u001b[91m      ~~~~~~~~~~~~~~~~~~~~~~~~~\u001b[0m\n","diagnosticCodes":[2322]}],"failureMessages":[""],"fullName":"Utils Module should generate ID with custom length","invocations":1,"location":null,"numPassingAsserts":0,"retryReasons":[],"status":"failed","title":"should generate ID with custom length"},{"ancestorTitles":["Utils Module"],"duration":18,"failureDetails":[{"name":"TSError","diagnosticText":"\u001b[96msrc/utils/index.ts\u001b[0m:\u001b[93m151\u001b[0m:\u001b[93m7\u001b[0m - \u001b[91merror\u001b[0m\u001b[90m TS2322: \u001b[0mType 'unknown' is not assignable to type 'T[keyof T] | undefined'.\n\n\u001b[7m151\u001b[0m       sanitized[key as keyof T] = obj[key];\n\u001b[7m   \u001b[0m \u001b[91m      ~~~~~~~~~~~~~~~~~~~~~~~~~\u001b[0m\n","diagnosticCodes":[2322]}],"failureMessages":[""],"fullName":"Utils Module should hash string","invocations":1,"location":null,"numPassingAsserts":0,"retryReasons":[],"status":"failed","title":"should hash string"},{"ancestorTitles":["Utils Module"],"duration":18,"failureDetails":[{"name":"TSError","diagnosticText":"\u001b[96msrc/utils/index.ts\u001b[0m:\u001b[93m151\u001b[0m:\u001b[93m7\u001b[0m - \u001b[91merror\u001b[0m\u001b[90m TS2322: \u001b[0mType 'unknown' is not assignable to type 'T[keyof T] | undefined'.\n\n\u001b[7m151\u001b[0m       sanitized[key as keyof T] = obj[key];\n\u001b[7m   \u001b[0m \u001b[91m      ~~~~~~~~~~~~~~~~~~~~~~~~~\u001b[0m\n","diagnosticCodes":[2322]}],"failureMessages":[""],"fullName":"Utils Module should generate token","invocations":1,"location":null,"numPassingAsserts":0,"retryReasons":[],"status":"failed","title":"should generate token"},{"ancestorTitles":["Utils Module"],"duration":61,"failureDetails":[{"name":"TSError","diagnosticText":"\u001b[96msrc/utils/index.ts\u001b[0m:\u001b[93m151\u001b[0m:\u001b[93m7\u001b[0m - \u001b[91merror\u001b[0m\u001b[90m TS2322: \u001b[0mType 'unknown' is not assignable to type 'T[keyof T] | undefined'.\n\n\u001b[7m151\u001b[0m       sanitized[key as keyof T] = obj[key];\n\u001b[7m   \u001b[0m \u001b[91m      ~~~~~~~~~~~~~~~~~~~~~~~~~\u001b[0m\n","diagnosticCodes":[2322]}],"failureMessages":[""],"fullName":"Utils Module should generate API key with prefix","invocations":1,"location":null,"numPassingAsserts":0,"retryReasons":[],"status":"failed","title":"should generate API key with prefix"},{"ancestorTitles":["Utils Module"],"duration":25,"failureDetails":[{"name":"TSError","diagnosticText":"\u001b[96msrc/utils/index.ts\u001b[0m:\u001b[93m151\u001b[0m:\u001b[93m7\u001b[0m - \u001b[91merror\u001b[0m\u001b[90m TS2322: \u001b[0mType 'unknown' is not assignable to type 'T[keyof T] | undefined'.\n\n\u001b[7m151\u001b[0m       sanitized[key as keyof T] = obj[key];\n\u001b[7m   \u001b[0m \u001b[91m      ~~~~~~~~~~~~~~~~~~~~~~~~~\u001b[0m\n","diagnosticCodes":[2322]}],"failureMessages":[""],"fullName":"Utils Module should sleep","invocations":1,"location":null,"numPassingAsserts":0,"retryReasons":[],"status":"failed","title":"should sleep"},{"ancestorTitles":["Utils Module"],"duration":14,"failureDetails":[{"name":"TSError","diagnosticText":"\u001b[96msrc/utils/index.ts\u001b[0m:\u001b[93m151\u001b[0m:\u001b[93m7\u001b[0m - \u001b[91merror\u001b[0m\u001b[90m TS2322: \u001b[0mType 'unknown' is not assignable to type 'T[keyof T] | undefined'.\n\n\u001b[7m151\u001b[0m       sanitized[key as keyof T] = obj[key];\n\u001b[7m   \u001b[0m \u001b[91m      ~~~~~~~~~~~~~~~~~~~~~~~~~\u001b[0m\n","diagnosticCodes":[2322]}],"failureMessages":[""],"fullName":"Utils Module should retry on failure","invocations":1,"location":null,"numPassingAsserts":0,"retryReasons":[],"status":"failed","title":"should retry on failure"},{"ancestorTitles":["Utils Module"],"duration":14,"failureDetails":[{"name":"TSError","diagnosticText":"\u001b[96msrc/utils/index.ts\u001b[0m:\u001b[93m151\u001b[0m:\u001b[93m7\u001b[0m - \u001b[91merror\u001b[0m\u001b[90m TS2322: \u001b[0mType 'unknown' is not assignable to type 'T[keyof T] | undefined'.\n\n\u001b[7m151\u001b[0m       sanitized[key as keyof T] = obj[key];\n\u001b[7m   \u001b[0m \u001b[91m      ~~~~~~~~~~~~~~~~~~~~~~~~~\u001b[0m\n","diagnosticCodes":[2322]}],"failureMessages":[""],"fullName":"Utils Module should parse query int","invocations":1,"location":null,"numPassingAsserts":0,"retryReasons":[],"status":"failed","title":"should parse query int"},{"ancestorTitles":["Utils Module"],"duration":17,"failureDetails":[{"name":"TSError","diagnosticText":"\u001b[96msrc/utils/index.ts\u001b[0m:\u001b[93m151\u001b[0m:\u001b[93m7\u001b[0m - \u001b[91merror\u001b[0m\u001b[90m TS2322: \u001b[0mType 'unknown' is not assignable to type 'T[keyof T] | undefined'.\n\n\u001b[7m151\u001b[0m       sanitized[key as keyof T] = obj[key];\n\u001b[7m   \u001b[0m \u001b[91m      ~~~~~~~~~~~~~~~~~~~~~~~~~\u001b[0m\n","diagnosticCodes":[2322]}],"failureMessages":[""],"fullName":"Utils Module should parse query bool","invocations":1,"location":null,"numPassingAsserts":0,"retryReasons":[],"status":"failed","title":"should parse query bool"}],"endTime":1772702821883,"message":"  ● Utils Module › should generate random ID\n\n\n\n\n\n  ● Utils Module › should generate ID with custom length\n\n\n\n\n\n  ● Utils Module › should hash string\n\n\n\n\n\n  ● Utils Module › should generate token\n\n\n\n\n\n  ● Utils Module › should generate API key with prefix\n\n\n\n\n\n  ● Utils Module › should sleep\n\n\n\n\n\n  ● Utils Module › should retry on failure\n\n\n\n\n\n  ● Utils Module › should parse query int\n\n\n\n\n\n  ● Utils Module › should parse query bool\n\n\n\n\n","name":"C:\\Users\\ashis\\OneDrive\\Desktop\\test\\open\\saas-backend-kit\\tests\\utils.test.ts","startTime":1772702813909,"status":"failed","summary":""}],"wasInterrupted":false}

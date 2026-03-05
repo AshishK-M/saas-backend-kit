@@ -39,7 +39,7 @@ export class JWTService {
   }
 
   refreshTokens(refreshToken: string): TokenPair {
-    const payload = this.verifyRefreshToken(refreshToken);
+    const { iat, exp, nbf, ...payload } = this.verifyRefreshToken(refreshToken) as JWTPayload & { iat?: number; exp?: number; nbf?: number };
     return this.generateTokenPair(payload);
   }
 }
