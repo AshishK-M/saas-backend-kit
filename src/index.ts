@@ -7,6 +7,7 @@ export { config } from './config';
 export { ResponseHelper, response } from './response';
 export { upload, s3Service, S3Service } from './upload';
 export { createApp, createExpressApp, SaaSAppBuilder, PluginManager, Plugin, AppOptions } from './plugin';
+export { database, db, DatabaseManager, DatabaseConfig, DatabaseOptions } from './database';
 
 export { AuthOptions, User, JWTPayload, TokenPair, LoginCredentials, RegisterData, Role, Permission, RolePermissions } from './auth/types';
 export { QueueOptions, JobData, JobProcessor } from './queue';

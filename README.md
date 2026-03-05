@@ -61,6 +61,170 @@ app.listen(3000, () => logger.info('Server running'));
 
 ---
 
+## 🗄️ Database
+
+This toolkit supports both **PostgreSQL** and **MongoDB**.
+
+### PostgreSQL
+
+#### 1. Set the Database URL
+
+Add the following to your `.env` file:
+
+```env
+DATABASE_URL=postgresql://user:password@localhost:5432/mydb
+```
+
+Replace the values with your actual database credentials:
+- `user` - Your PostgreSQL username
+- `password` - Your PostgreSQL password
+- `localhost` - Database host (use `localhost` for local, or your cloud provider's host)
+- `5432` - PostgreSQL port (default is 5432)
+- `mydb` - Your database name
+
+#### 2. Using Prisma (Recommended)
+
+If you're using Prisma, create a `prisma/schema.prisma` file:
+
+```prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  name      String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+```
+
+Then run migrations:
+
+```bash
+npx prisma migrate dev --name init
+```
+
+#### 3. Using pg (Native PostgreSQL Client)
+
+```typescript
+import pg from 'pg';
+const { Pool } = pg;
+
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+});
+
+const result = await pool.query('SELECT * FROM users WHERE email = $1', [email]);
+```
+
+#### 4. Connection Pooling
+
+For production, ensure your database connection is properly configured:
+
+```typescript
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  max: 20,
+  idleTimeoutMillis: 30000,
+  connectionTimeoutMillis: 2000,
+});
+```
+
+---
+
+### MongoDB
+
+First, install the MongoDB driver:
+
+```bash
+npm install mongodb
+```
+
+#### 1. Set the MongoDB URL
+
+Add the following to your `.env` file:
+
+```env
+MONGODB_URL=mongodb://user:password@localhost:27017/mydb
+```
+
+Replace the values with your actual MongoDB credentials:
+- `user` - Your MongoDB username
+- `password` - Your MongoDB password
+- `localhost` - Database host
+- `27017` - MongoDB port (default is 27017)
+- `mydb` - Your database name
+
+#### 2. Using the Database Module
+
+```typescript
+import { database, config } from 'saas-backend-kit';
+
+config.load();
+
+await database.connect({
+  url: config.get('MONGODB_URL') || 'mongodb://localhost:27017/mydb',
+});
+
+const usersCollection = database.collection('users');
+
+const user = await usersCollection.findOne({ email: 'user@example.com' });
+await usersCollection.insertOne({ name: 'John', email: 'john@example.com' });
+```
+
+#### 3. Using connectTo for Custom Database Name
+
+```typescript
+await database.connectTo(
+  'mongodb://localhost:27017',
+  'mydb',
+  { maxPoolSize: 10 }
+);
+```
+
+#### 4. Connection Options
+
+```typescript
+await database.connect({
+  url: process.env.MONGODB_URL!,
+  options: {
+    maxPoolSize: 20,
+    minPoolSize: 5,
+    serverSelectionTimeoutMS: 5000,
+    socketTimeoutMS: 45000,
+    w: 'majority',
+  }
+});
+```
+
+#### 5. CRUD Operations
+
+```typescript
+const users = database.collection('users');
+
+await users.insertOne({ name: 'John', email: 'john@example.com' });
+
+const user = await users.findOne({ email: 'john@example.com' });
+
+await users.updateOne(
+  { email: 'john@example.com' },
+  { $set: { name: 'John Doe' } }
+);
+
+await users.deleteOne({ email: 'john@example.com' });
+
+const allUsers = await users.find().toArray();
+```
+
+---
+
 ## 🔐 Authentication
 
 ```typescript
@@ -187,8 +351,11 @@ JWT_REFRESH_EXPIRES_IN=30d
 # Redis
 REDIS_URL=redis://localhost:6379
 
-# Database (optional)
+# Database (PostgreSQL)
 DATABASE_URL=postgresql://user:password@localhost:5432/mydb
+
+# Database (MongoDB)
+MONGODB_URL=mongodb://user:password@localhost:27017/mydb
 
 # Google OAuth (optional)
 GOOGLE_CLIENT_ID=
