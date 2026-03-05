@@ -17,9 +17,10 @@ export default defineConfig({
   splitting: false,
   sourcemap: true,
   clean: false,
-  external: ['express', 'fastify', 'ioredis', 'bullmq', '@aws-sdk/client-s3', '@aws-sdk/s3-request-presigner'],
+  external: ['express', 'fastify', 'ioredis', 'bullmq', '@aws-sdk/client-s3', '@aws-sdk/s3-request-presigner', 'mongodb'],
   treeshake: true,
   exports: {
     namedExports: true,
   },
 });
+
